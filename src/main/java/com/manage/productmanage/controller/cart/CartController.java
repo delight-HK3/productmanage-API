@@ -64,7 +64,6 @@ public class CartController {
 
         return ApiResponse.success(ResponseCode.SUCCESS_POST.getStatus()
                                     , ResponseCode.SUCCESS_POST.getCode()
-                                    , null
                                     , ResponseCode.SUCCESS_POST.getMessage());
     }
 
@@ -84,7 +83,6 @@ public class CartController {
 
         return ApiResponse.success(ResponseCode.SUCCESS_PATCH.getStatus()
                                     , ResponseCode.SUCCESS_PATCH.getCode()
-                                    , null
                                     , ResponseCode.SUCCESS_PATCH.getMessage());
     }
 
@@ -104,7 +102,6 @@ public class CartController {
 
         return ApiResponse.success(ResponseCode.SUCCESS_DELETE.getStatus()
                                     , ResponseCode.SUCCESS_DELETE.getCode()
-                                    , null
                                     , ResponseCode.SUCCESS_DELETE.getMessage());
     }
 

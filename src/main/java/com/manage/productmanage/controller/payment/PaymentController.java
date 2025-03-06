@@ -48,7 +48,6 @@ public class PaymentController {
 
         return ApiResponse.success(ResponseCode.SUCCESS_POST.getStatus()
                                     , ResponseCode.SUCCESS_POST.getCode()
-                                    , null
                                     , ResponseCode.SUCCESS_POST.getMessage());
 
     }
