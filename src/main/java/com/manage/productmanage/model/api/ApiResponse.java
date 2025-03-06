@@ -3,15 +3,12 @@ package com.manage.productmanage.model.api;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import lombok.Getter;
 /**
  * API Result
  * API 요청시 응답에 사용하는 객체
  */
 @Getter
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
     private int code;
 
