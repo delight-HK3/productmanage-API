@@ -6,7 +6,7 @@
 해당 API는 JPA를 이용한 REST API입니다. 구매가능한 상품 및 전체상품 조회, 장바구니 기능, 주문 및 결제 기능을 제공하고 있습니다, 결제 기능은 beeceptor MOCK API를 사용했습니다.
 
 ### 기본정보
-- API 이름 : allra-backend API
+- API 이름 : productmanage-Rest-API
 - 버전 : v1
 - 기본 URL : http://localhost:8088/api/v1
 
