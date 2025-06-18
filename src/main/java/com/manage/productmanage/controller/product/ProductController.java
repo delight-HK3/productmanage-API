@@ -7,6 +7,9 @@ import com.manage.productmanage.model.api.ApiResponse;
 import com.manage.productmanage.model.product.ProductResponseDTO;
 import com.manage.productmanage.service.product.ProductService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * 상품 관련기능 Controller
  */
+@Tag(name = "ProductController", description = "상품 재고 조회 Controller")
 @RestController
 @RequestMapping("/api/v1")
 public class ProductController {
@@ -32,9 +36,10 @@ public class ProductController {
      * 
      * @return ApiResponse<List<ProductResponseDTO>>
      */
+    @Operation(summary = "특정 사용자 조회", description = "ID로 사용자를 조회합니다.")
     @GetMapping("/product")
     public ResponseEntity<ApiResponse<List<ProductResponseDTO>>> product() {
-        
+
         return ApiResponse.success(ResponseCode.SUCCESS_GET.getStatus()
                                     , ResponseCode.SUCCESS_GET.getCode()
                                     , productService.getProductHaveList()
