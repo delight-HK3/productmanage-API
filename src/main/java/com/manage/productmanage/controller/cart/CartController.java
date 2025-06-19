@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.manage.productmanage.Enum.ResponseCode;
-import com.manage.productmanage.model.api.ApiResponse;
+import com.manage.productmanage.model.api.MyApiResponse;
 import com.manage.productmanage.model.cart.CartResponseDTO;
 import com.manage.productmanage.model.cart.CartInstRequestDTO;
 import com.manage.productmanage.model.cart.CartUpdtRequestDTO;
@@ -38,12 +38,12 @@ public class CartController {
      * 특정 고객의 장바구니 조회 
      *
      * @param customerId
-     * @return ApiResponse<List<CartResponseDTO>>>
+     * @return MyApiResponse<List<CartResponseDTO>>>
      */
     @GetMapping("/cart/{customerid}")
-    public ResponseEntity<ApiResponse<List<CartResponseDTO>>> cart(@PathVariable(value = "customerid") Long customerId) {
+    public ResponseEntity<MyApiResponse<List<CartResponseDTO>>> cart(@PathVariable(value = "customerid") Long customerId) {
 
-        return ApiResponse.success(ResponseCode.SUCCESS_GET.getStatus()
+        return MyApiResponse.success(ResponseCode.SUCCESS_GET.getStatus()
                                     , ResponseCode.SUCCESS_GET.getCode()
                                     , cartService.getCart(customerId)
                                     , ResponseCode.SUCCESS_GET.getMessage());
@@ -55,14 +55,14 @@ public class CartController {
      *
      * @param <T>
      * @param cartInstDTO
-     * @return ApiResponse<T>
+     * @return MyApiResponse<T>
      */
     @PostMapping("/cart")
-    public <T> ResponseEntity<ApiResponse<T>> cartInst(@Valid CartInstRequestDTO cartInstRequestDTO){
+    public <T> ResponseEntity<MyApiResponse<T>> cartInst(@Valid CartInstRequestDTO cartInstRequestDTO){
 
         cartService.saveCart(cartInstRequestDTO);
 
-        return ApiResponse.success(ResponseCode.SUCCESS_POST.getStatus()
+        return MyApiResponse.success(ResponseCode.SUCCESS_POST.getStatus()
                                     , ResponseCode.SUCCESS_POST.getCode()
                                     , ResponseCode.SUCCESS_POST.getMessage());
     }
@@ -73,15 +73,15 @@ public class CartController {
      * @param <T>
      * @param cartId
      * @param customerId
-     * @return ApiResponse<T>
+     * @return MyApiResponse<T>
      */
     @PatchMapping("/cart/{customerid}")
-    public <T> ResponseEntity<ApiResponse<T>> cartUpdt(@PathVariable(value = "customerid") Long customerId
+    public <T> ResponseEntity<MyApiResponse<T>> cartUpdt(@PathVariable(value = "customerid") Long customerId
                                                         , CartUpdtRequestDTO cartUpdtRequestDTO){
 
         cartService.updateCart(customerId, cartUpdtRequestDTO);
 
-        return ApiResponse.success(ResponseCode.SUCCESS_PATCH.getStatus()
+        return MyApiResponse.success(ResponseCode.SUCCESS_PATCH.getStatus()
                                     , ResponseCode.SUCCESS_PATCH.getCode()
                                     , ResponseCode.SUCCESS_PATCH.getMessage());
     }
@@ -92,15 +92,15 @@ public class CartController {
      * @param <T>
      * @param cartId
      * @param customerId
-     * @return ApiResponse<T>
+     * @return MyApiResponse<T>
      */
     @DeleteMapping("/cart/{customerid}")
-    public <T> ResponseEntity<ApiResponse<T>> cartDel(@PathVariable(value = "customerid") Long customerId
+    public <T> ResponseEntity<MyApiResponse<T>> cartDel(@PathVariable(value = "customerid") Long customerId
                                                         ,@RequestParam("cartid") Long cartId){
 
         cartService.deleteCart(cartId, customerId);
 
-        return ApiResponse.success(ResponseCode.SUCCESS_DELETE.getStatus()
+        return MyApiResponse.success(ResponseCode.SUCCESS_DELETE.getStatus()
                                     , ResponseCode.SUCCESS_DELETE.getCode()
                                     , ResponseCode.SUCCESS_DELETE.getMessage());
     }

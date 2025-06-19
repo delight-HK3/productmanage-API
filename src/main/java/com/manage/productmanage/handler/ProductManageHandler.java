@@ -13,7 +13,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 import com.manage.productmanage.Enum.ExceptionCode;
 import com.manage.productmanage.exception.NoEnoughException;
 import com.manage.productmanage.exception.NoSearchException;
-import com.manage.productmanage.model.api.ApiResponse;
+import com.manage.productmanage.model.api.MyApiResponse;
 
 @RestControllerAdvice
 public class ProductManageHandler {
@@ -28,9 +28,9 @@ public class ProductManageHandler {
      * @return
      */
     @ExceptionHandler(NoSearchException.class)
-    public <T> ResponseEntity<ApiResponse<T>> NoSearchExceptionHandler(NoSearchException e){
+    public <T> ResponseEntity<MyApiResponse<T>> NoSearchExceptionHandler(NoSearchException e){
         ExceptionCode exceptionCode = e.getError();
-        return ApiResponse.fail(exceptionCode.getStatus()
+        return MyApiResponse.fail(exceptionCode.getStatus()
                                 , exceptionCode.getCode()
                                 , exceptionCode.getMessage());
     }
@@ -42,9 +42,9 @@ public class ProductManageHandler {
      * @return
      */
     @ExceptionHandler(NoEnoughException.class)
-    public <T> ResponseEntity<ApiResponse<T>> NoEnoughExceptionHandler(NoEnoughException e){
+    public <T> ResponseEntity<MyApiResponse<T>> NoEnoughExceptionHandler(NoEnoughException e){
         ExceptionCode exceptionCode = e.getError();
-        return ApiResponse.fail(exceptionCode.getStatus()
+        return MyApiResponse.fail(exceptionCode.getStatus()
                                 , exceptionCode.getCode()
                                 , exceptionCode.getMessage());
     }
@@ -56,8 +56,8 @@ public class ProductManageHandler {
      * @return
      */
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public <T> ResponseEntity<ApiResponse<T>> TypeMismatchExceptionHandler(){
-        return ApiResponse.fail(ExceptionCode.NO_TYPE_MISMATCH_ARGUMENT.getStatus()
+    public <T> ResponseEntity<MyApiResponse<T>> TypeMismatchExceptionHandler(){
+        return MyApiResponse.fail(ExceptionCode.NO_TYPE_MISMATCH_ARGUMENT.getStatus()
                                 , ExceptionCode.NO_TYPE_MISMATCH_ARGUMENT.getCode()
                                 , ExceptionCode.NO_TYPE_MISMATCH_ARGUMENT.getMessage());
     }
@@ -69,8 +69,8 @@ public class ProductManageHandler {
      * @return
      */
     @ExceptionHandler({MethodArgumentNotValidException.class, MissingServletRequestParameterException.class})
-    public <T> ResponseEntity<ApiResponse<T>> NotValidExceptionHandler(){
-        return ApiResponse.fail(ExceptionCode.NO_REQUIRED_ARGUMENT.getStatus()
+    public <T> ResponseEntity<MyApiResponse<T>> NotValidExceptionHandler(){
+        return MyApiResponse.fail(ExceptionCode.NO_REQUIRED_ARGUMENT.getStatus()
                                 , ExceptionCode.NO_REQUIRED_ARGUMENT.getCode()
                                 , ExceptionCode.NO_REQUIRED_ARGUMENT.getMessage());
     }
@@ -82,8 +82,8 @@ public class ProductManageHandler {
      * @return
      */
     @ExceptionHandler(NoResourceFoundException.class)
-    public <T> ResponseEntity<ApiResponse<T>> NoResourceFoundExceptionHandler(){
-        return ApiResponse.fail(ExceptionCode.NOT_FOUND_PAGE.getStatus()
+    public <T> ResponseEntity<MyApiResponse<T>> NoResourceFoundExceptionHandler(){
+        return MyApiResponse.fail(ExceptionCode.NOT_FOUND_PAGE.getStatus()
                                 , ExceptionCode.NOT_FOUND_PAGE.getCode()
                                 , ExceptionCode.NOT_FOUND_PAGE.getMessage());
     }
@@ -95,8 +95,8 @@ public class ProductManageHandler {
      * @return
      */
     @ExceptionHandler({HttpRequestMethodNotSupportedException.class, InvalidDataAccessApiUsageException.class})
-    public <T> ResponseEntity<ApiResponse<T>> MethodNotSupportHandler(){
-        return ApiResponse.fail(ExceptionCode.NO_MATCH_METHOD.getStatus()
+    public <T> ResponseEntity<MyApiResponse<T>> MethodNotSupportHandler(){
+        return MyApiResponse.fail(ExceptionCode.NO_MATCH_METHOD.getStatus()
                                 , ExceptionCode.NO_MATCH_METHOD.getCode()
                                 , ExceptionCode.NO_MATCH_METHOD.getMessage());
     }

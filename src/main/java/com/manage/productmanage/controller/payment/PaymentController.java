@@ -3,7 +3,7 @@ package com.manage.productmanage.controller.payment;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.manage.productmanage.Enum.ResponseCode;
-import com.manage.productmanage.model.api.ApiResponse;
+import com.manage.productmanage.model.api.MyApiResponse;
 import com.manage.productmanage.model.payment.PaymentRequestDTO;
 import com.manage.productmanage.model.payment.PaymentResponseDTO;
 import com.manage.productmanage.service.payment.PaymentService;
@@ -39,14 +39,14 @@ public class PaymentController {
      * @param customerId
      * @param orderId
      * @param amount
-     * @return ApiResponse<T>
+     * @return MyApiResponse<T>
      */
     @PostMapping("/payment")
-    public <T> ResponseEntity<ApiResponse<T>> payment(@Valid PaymentRequestDTO paymentRequestDTO) {
+    public <T> ResponseEntity<MyApiResponse<T>> payment(@Valid PaymentRequestDTO paymentRequestDTO) {
         
         paymentService.payment(paymentRequestDTO);
 
-        return ApiResponse.success(ResponseCode.SUCCESS_POST.getStatus()
+        return MyApiResponse.success(ResponseCode.SUCCESS_POST.getStatus()
                                     , ResponseCode.SUCCESS_POST.getCode()
                                     , ResponseCode.SUCCESS_POST.getMessage());
 
@@ -57,13 +57,13 @@ public class PaymentController {
      * 
      * @param <T>
      * @param customerId
-     * @return ApiResponse<PaymentResponseDTO>
+     * @return MyApiResponse<PaymentResponseDTO>
      */
     @GetMapping("/payment/{customerid}")
-    public ResponseEntity<ApiResponse<List<PaymentResponseDTO>>> getPayment(
+    public ResponseEntity<MyApiResponse<List<PaymentResponseDTO>>> getPayment(
                                         @PathVariable(value = "customerid") Long customerId) {
 
-        return ApiResponse.success(ResponseCode.SUCCESS_GET.getStatus()
+        return MyApiResponse.success(ResponseCode.SUCCESS_GET.getStatus()
                                     , ResponseCode.SUCCESS_GET.getCode()
                                     , paymentService.getPayment(customerId)
                                     , ResponseCode.SUCCESS_GET.getMessage());
